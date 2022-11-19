@@ -1,6 +1,9 @@
 const container = document.getElementById('container');
 const btn = document.getElementById('button-play');
-
+const input = document.getElementById('number');
+const btnResult = document.getElementById('btn-result');
+let result = document.getElementById('result');
+let arrayResult = [];
 
 
 btn.addEventListener('click', function () {
@@ -12,27 +15,24 @@ btn.addEventListener('click', function () {
     createDiv.innerHTML = numGame;
     container.append(createDiv);
     console.log(numGame);
+    arrayResult = [];
 
-    // set timeout of 30 sec, with if win or loose
+
     setTimeout(() => {
-        // momentanemante ho risolto cosi' visto che il prompt mi da problemi
-        createDiv.innerHTML = "";
+        container.innerHTML = "";
+        btnResult.addEventListener('click', function () {
+            console.log(input.value);
+            arrayResult.push(input.value)
+            if (numGame.length === arrayResult.length)
+                for (let i = 0; i < numGame.length; i++) {
+                    if (numGame[i] == arrayResult[i]) {
+                        result.innerHTML = 'Hai vinto!'
+                    } else {
+                        result.innerHTML = 'Hai perso!';
+                    }
+                }
+        })
     }, 30000);
-    setTimeout(() => {
-        let arrayResult = [];
-        for (let i = 0; i < numGame.length; i++) {
-            let result = parseInt(prompt(`Inserisci il num ${i + 1}`));
-            arrayResult.push(result);
-        };
-        for (let i = 0; i < numGame.length; i++) {
-            if (numGame[i] == arrayResult[i]) {
-                console.log('Hai Vinto!');
-
-            } else {
-                console.log('Hai perso!');
-            }
-        }
-    }, 30010);
 });
 
 
@@ -51,7 +51,6 @@ function createArrayNum(numPossibility, minNum, maxNum) {
         let randomNumForArray = randomNumber(minNum, maxNum);
         if (!arrayNumb.includes(randomNumForArray))
             arrayNumb.push(randomNumForArray);
-
     }
     return arrayNumb;
 };
