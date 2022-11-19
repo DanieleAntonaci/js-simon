@@ -26,7 +26,7 @@ btn.addEventListener('click', function () {
         container.innerHTML = "";
         input.classList.remove('hidden');
         btnResult.classList.remove('hidden');
-    }, 3000);
+    }, 30000);
 
     btnResult.addEventListener('click', function () {
         console.log(input.value);
